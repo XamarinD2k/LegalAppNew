@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:LegalApp;assembly=LegalApp" 
+	x:Class="LegalApp.Login"
+	Icon="d2kt.png"
+	Title="Login"
+	BackgroundImage="yLOOp.jpg">
+	<ContentPage.BindingContext>
+		<local:VMLogin/>
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+
+      	<StackLayout VerticalOptions="Center" Orientation="Vertical">
+      		<StackLayout VerticalOptions="Center" Orientation="Vertical">
+				<Image Source="d2kt.png" WidthRequest="200" HeightRequest="100"></Image>
+      		</StackLayout>
+      	<StackLayout>
+
+      	</StackLayout>
+     		<StackLayout></StackLayout>
+			<StackLayout  Orientation="Horizontal"    HorizontalOptions="FillAndExpand">
+      			<Image Source="user.png" WidthRequest="52" HeightRequest="40"></Image>
+     			<Entry x:Name="txtUserName" Keyboard="Text" Placeholder="User Name" HorizontalOptions="FillAndExpand"
+     			Text="{Binding username}"/>
+     		</StackLayout>
+     		<StackLayout>
+     		</StackLayout>
+
+     		<StackLayout></StackLayout>
+     		<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+     			<Image Source="passw.png" WidthRequest="52" HeightRequest="40"></Image>
+     			<Entry x:Name="txtPassword" IsPassword="true" Placeholder="Password" HorizontalOptions="FillAndExpand" 
+     			Text="{Binding password}"></Entry>
+     		</StackLayout>
+
+     		<StackLayout></StackLayout>
+     		<StackLayout></StackLayout>
+
+     		<StackLayout Padding="20">
+	     		<Button x:Name="btnLogin" HorizontalOptions="FillAndExpand" 
+	     		BackgroundColor="#F1995D" Text="Login" Clicked="OnLogin"/>
+
+				<!--Command="{Binding LoginCommand}"-->
+     		</StackLayout>
+
+
+     	</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

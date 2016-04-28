@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LegalApp.AudioRecorder">
+
+	 <ContentPage.Resources>
+  		<ResourceDictionary>
+   			<OnPlatform x:Key="Priority1" x:TypeArguments="x:Int32"
+     			iOS="0"
+     			Android="1"
+     			WinPhone="1" />
+   			<OnPlatform x:Key="Priority2" x:TypeArguments="x:Int32"
+   		  		 iOS="1"
+   		  		 Android="0"
+   		  	 WinPhone="0" />
+  		</ResourceDictionary>
+ 	</ContentPage.Resources>
+
+ 	<ContentPage.ToolbarItems>
+ 	 	<ToolbarItem Name="Menu1"   Order="Secondary" Priority="{StaticResource Priority1}"  >
+ 	  		<ToolbarItem.Icon>
+ 	   			<OnPlatform x:TypeArguments="FileImageSource"
+ 	     			WinPhone="Toolkit.Content/ApplicationBar.Add.png" />
+ 	  		</ToolbarItem.Icon>
+ 	 	</ToolbarItem>
+ 	 	<ToolbarItem Name="Menu2" Order="Secondary" Priority="{StaticResource Priority2}" >
+ 	  		<ToolbarItem.Icon>
+ 	   			<OnPlatform x:TypeArguments="FileImageSource"
+ 	   				 WinPhone="Toolkit.Content/ApplicationBar.Check.png" />
+ 			 </ToolbarItem.Icon>
+ 	 	</ToolbarItem>
+ 	</ContentPage.ToolbarItems>
+	
+
+	<ContentPage.Content>
+		<StackLayout  Orientation="Vertical">
+			<Button x:Name="StartRecording" Text="Start Recording" HorizontalOptions="FillAndExpand"></Button>
+			<Button x:Name="StopRecording" Text="Stop Recording" HorizontalOptions="FillAndExpand"></Button>
+			<Button x:Name="StartPlaying" Text="Play Recording" HorizontalOptions="FillAndExpand"></Button>
+			<Button x:Name="StopPlaying" Text="Stop Playing" HorizontalOptions="FillAndExpand"></Button>
+
+			<Label x:Name="Status" HorizontalOptions="FillAndExpand" ></Label>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

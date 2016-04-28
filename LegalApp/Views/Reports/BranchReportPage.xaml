@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:LegalApp;assembly=LegalApp" Title="Branchwise Summary Report" x:Class="LegalApp.BranchReportPage">
+	<ContentPage.BindingContext>
+		<local:BranchReportVM />
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+			<StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+				<ActivityIndicator Color="Silver" IsVisible="{Binding ActivityIndicator}" IsRunning="{Binding ActivityIndicator}" VerticalOptions="Center" HorizontalOptions="Center">
+				</ActivityIndicator>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#0080ff" IsVisible="{Binding ShowReport}">
+				<Grid Padding="5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30">
+						</RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*">
+						</ColumnDefinition>
+						<ColumnDefinition Width="50">
+						</ColumnDefinition>
+						<ColumnDefinition Width="100">
+						</ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" TextColor="White" FontAttributes="Bold" Text="Branch Name" />
+					<Label Grid.Row="0" Grid.Column="1" TextColor="White" FontAttributes="Bold" Text="No. of Accounts" />
+					<Label Grid.Row="0" Grid.Column="2" TextColor="White" FontAttributes="Bold" Text="Amount (in Lakhs)" />
+				</Grid>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowReport}">
+				<ListView x:Name="listBranchReport" ItemsSource="{Binding BranchReportResponseList}" RowHeight="40">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid Padding="5">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30">
+										</RowDefinition>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*">
+										</ColumnDefinition>
+										<ColumnDefinition Width="50">
+										</ColumnDefinition>
+										<ColumnDefinition Width="100">
+										</ColumnDefinition>
+									</Grid.ColumnDefinitions>
+									<Label Grid.Row="0" Grid.Column="0" Text="{Binding BranchCode}" IsVisible="false" />
+									<Label Grid.Row="0" Grid.Column="0" Text="{Binding BranchName}" />
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding NoofAccounts}" />
+									<Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" />
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#ff8000" IsVisible="{Binding ShowReport}">
+				<ListView x:Name="listZoneReportTotal" ItemsSource="{Binding BranchReportTotalList}" RowHeight="40">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid Padding="5">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30">
+										</RowDefinition>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*">
+										</ColumnDefinition>
+										<ColumnDefinition Width="50">
+										</ColumnDefinition>
+										<ColumnDefinition Width="100">
+										</ColumnDefinition>
+									</Grid.ColumnDefinitions>
+									<Label Grid.Row="0" Grid.Column="0" Text="Total" />
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding NoofAccounts}" />
+									<Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" />
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

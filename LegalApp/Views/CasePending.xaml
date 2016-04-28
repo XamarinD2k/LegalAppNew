@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			Title = "Case Pending List"
+			Icon="d2kt.png"
+			xmlns:local="clr-namespace:LegalApp;assembly=LegalApp"
+			BackgroundImage="yLOOp.jpg"
+			x:Class="LegalApp.CasePending">
+
+	<ContentPage.BindingContext>
+		<local:CasePendingVM />
+	</ContentPage.BindingContext>
+
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="10">
+		 	<Label x:Name="UserName" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#81F7F3"></Label>
+
+			<StackLayout Orientation="Horizontal"  HeightRequest="50">
+				<Entry x:Name="txtSearchCases" TextColor="Aqua" Text="{Binding SearchValue}" 
+					Placeholder="Search Cases" HorizontalOptions="FillAndExpand"/>		
+				<Button x:Name="btnClear"   Text="Clear" HeightRequest="20" Command="{Binding ClearCommand}" 
+					TextColor="Blue" BackgroundColor="#F1995D" HorizontalOptions="Fill"/>
+			</StackLayout>
+
+     		<ActivityIndicator Color="Red" IsVisible="{Binding ActivityIndicator}" IsRunning="{Binding ActivityIndicator}" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
+			<ListView x:Name="listCheckPending" ItemsSource="{Binding CasePendingList}" RowHeight="120" 
+				ItemTapped="OnCaseSelect">
+				  		<ListView.ItemTemplate>
+				  			<DataTemplate>
+				  				<ViewCell> 
+				  						<Grid Padding="5"> 
+				  							<Grid.RowDefinitions> 
+				  								<RowDefinition Height="20"></RowDefinition> 
+		  										<RowDefinition Height="20"></RowDefinition> 
+		  										<RowDefinition Height="20"></RowDefinition> 
+		  										<RowDefinition Height="20"></RowDefinition> 
+				  							</Grid.RowDefinitions> 
+
+				  							<Grid.ColumnDefinitions> 
+				  								<ColumnDefinition Width="100">	</ColumnDefinition> 
+				  								<ColumnDefinition Width="*">	</ColumnDefinition> 
+		  										<ColumnDefinition Width="60" >	</ColumnDefinition> 
+				  							</Grid.ColumnDefinitions> 
+
+				  							<Label Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" 
+				  							Text="{Binding CustomerName}" FontAttributes="Bold" FontSize="18"/>
+				  							<Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" Text="Case Name:"></Label>
+				  							<Label Grid.Row="1" Grid.Column="1" Text="{Binding case_name}"></Label>
+				  							<Image Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" x:Name="ImgForward" Source="nextImg.png" 
+				  								VerticalOptions="FillAndExpand" HorizontalOptions="Center"/> 
+
+					  						<Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" Text="Case ID:"></Label> 
+					  						<Label Grid.Row="2" Grid.Column="1" Text="{Binding case_id}" ></Label> 
+					  						<Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" Text="Branch Code:"></Label> 
+											<Label Grid.Row="3" Grid.Column="1" Text="{Binding BranchCode}" ></Label> 
+			
+										</Grid>
+				  				</ViewCell>
+				  			</DataTemplate>
+				  		</ListView.ItemTemplate>
+				 </ListView>
+			
+	</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
+
+

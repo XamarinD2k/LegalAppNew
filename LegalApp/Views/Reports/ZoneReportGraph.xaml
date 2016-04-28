@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:local="clr-namespace:LegalApp;assembly=LegalApp" 
+xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" x:Class="LegalApp.ZoneReportGraph">
+<!--	<ContentPage.BindingContext>
+		<local:ZoneReportGraphVM />
+	</ContentPage.BindingContext>-->
+	<ContentPage.ToolbarItems>
+ 	 	<ToolbarItem x:Name="ToolMenuList"  Order="Primary" Icon="listReport.png">
+ 	  		
+ 	 	</ToolbarItem>
+ 	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<chart:SfChart x:Name="sfChart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+			<chart:SfChart.Title>
+				<chart:ChartTitle Text="Zone Report" />
+			</chart:SfChart.Title>
+			<chart:SfChart.Legend>
+				<chart:ChartLegend />
+			</chart:SfChart.Legend>
+			<chart:SfChart.ChartBehaviors>
+				<chart:ChartZoomPanBehavior EnablePanning="true" EnableDoubleTap="true" />
+			</chart:SfChart.ChartBehaviors>
+			<chart:SfChart.PrimaryAxis>
+				<chart:CategoryAxis ShowMajorGridLines="True" LabelsIntersectAction="MultipleRows" >
+					<chart:CategoryAxis.Title>
+						<chart:ChartAxisTitle Text="Zone Name" />
+					</chart:CategoryAxis.Title>
+				</chart:CategoryAxis>
+			</chart:SfChart.PrimaryAxis>
+<!--			<chart:SfChart.SecondaryAxis>
+				<chart:NumericalAxis>
+					<chart:NumericalAxis.Title>
+						<chart:ChartAxisTitle Text="Data" />
+					</chart:NumericalAxis.Title>
+					<chart:NumericalAxis.LabelStyle>
+						<chart:ChartAxisLabelStyle />
+					</chart:NumericalAxis.LabelStyle>
+				</chart:NumericalAxis>
+			</chart:SfChart.SecondaryAxis>-->
+<!--			<chart:SfChart.Series>
+				<chart:ColumnSeries Label="Amount" ItemsSource="{Binding Amount}" Color="Green">
+					<chart:ColumnSeries.DataMarker>
+						<chart:ChartDataMarker ShowLabel="True">
+							<chart:ChartDataMarker.LabelStyle>
+								<chart:DataMarkerLabelStyle LabelPosition="Inner" />
+							</chart:ChartDataMarker.LabelStyle>
+						</chart:ChartDataMarker>
+					</chart:ColumnSeries.DataMarker>
+				</chart:ColumnSeries>
+				<chart:ColumnSeries Label="No. of Account" ItemsSource="{Binding NoOfAccount}" Color="Yellow">
+					<chart:ColumnSeries.DataMarker>
+						<chart:ChartDataMarker ShowLabel="True">
+							<chart:ChartDataMarker.LabelStyle>
+								<chart:DataMarkerLabelStyle LabelPosition="Inner" />
+							</chart:ChartDataMarker.LabelStyle>
+						</chart:ChartDataMarker>
+					</chart:ColumnSeries.DataMarker>
+				</chart:ColumnSeries>
+
+				<chart:LineSeries  Label="No. of Account" ItemsSource="{Binding NoOfAccount}" Color="Yellow">
+					<chart:LineSeries.DataMarker>
+						<chart:ChartDataMarker ShowLabel="True">
+							<chart:ChartDataMarker.LabelStyle>
+								<chart:DataMarkerLabelStyle LabelPosition="Inner" />
+							</chart:ChartDataMarker.LabelStyle>
+						</chart:ChartDataMarker>
+					</chart:LineSeries.DataMarker>
+				</chart:LineSeries >
+
+			</chart:SfChart.Series>-->
+		</chart:SfChart>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:local="clr-namespace:LegalApp;assembly=LegalApp"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="LegalApp.CaseDetails"
+	Title="Case Details"
+	Icon="d2kt.png"
+	BackgroundImage="yLOOp.jpg"
+	>
+	<ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <!--<Setter Property="FontFamily" Value="Impact, Charcoal, sans-serif" />-->
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#87CEFF" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Impact, Charcoal, sans-serif" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#FFF" />
+                <Setter Property="FontAttributes" Value="Bold" />
+<!--                <Setter Property="BackgroundColor" Value="#F1995D" />-->
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+	<ContentPage.BindingContext>
+		<local:CaseDetailsVM />
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+
+	<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+		<ScrollView>
+			<StackLayout>
+				<ActivityIndicator Color="Red" IsVisible="{Binding ActivityIndicator}" IsRunning="{Binding ActivityIndicator}" VerticalOptions="Center" 
+				HorizontalOptions="Center"></ActivityIndicator>
+
+				<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+					<Label x:Name="lblName" Text="{Binding CustomerName}" FontFamily="Impact, Charcoal, sans-serif" FontSize="32" TextColor="White" HorizontalOptions="Center"></Label>
+				</StackLayout>
+
+
+				<Grid>
+					<Grid.RowDefinitions>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+	    			</Grid.RowDefinitions>
+					
+	    			<Grid.ColumnDefinitions>
+					       <ColumnDefinition Width="*"/>
+					       <ColumnDefinition Width="100"/>
+	    			</Grid.ColumnDefinitions>
+	    				<Label Text="Original Doc. Rec Dt." Grid.Column="0" Grid.Row="0"></Label>
+						<Label  x:Name="lblDocRecDt" Text="{Binding AcceptanceDt}" TextColor="White" Grid.Column="1" Grid.Row="0"></Label>
+					
+						<Label Text="Suit/Application Filed Dt." Grid.Column="0" Grid.Row="1"></Label>
+						<Label x:Name="lblApplFileDt"  Text="{Binding FilPlaintInCourtDt}" TextColor="White" Grid.Column="1" Grid.Row="1"></Label>
+					
+						<Label Text="Admission/Registration  Dt." Grid.Column="0" Grid.Row="2"></Label>
+						<Label x:Name="lblRegDt" Text="{Binding HANDingDocTAdvDt}" TextColor="White" Grid.Column="1" Grid.Row="2"></Label>
+    			</Grid>
+
+			<StackLayout>
+					<Grid>
+						<Grid.RowDefinitions>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+					        <RowDefinition Height="40"/>
+
+						</Grid.RowDefinitions>
+					
+						<Grid.ColumnDefinitions>
+					       <ColumnDefinition Width="100"/>
+					       <ColumnDefinition Width="*"/>
+					
+						</Grid.ColumnDefinitions>
+					
+						<Label Text="Current Stage" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"></Label>
+						<Picker x:Name="pickerCurrentState" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding currentStateIndex}"/>
+					
+						<Label Text="Next Stage" Grid.Column="0" Grid.Row="1"></Label>
+						<Picker x:Name="pickerNextState" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding NextPostingIndex}"/>
+					
+						<Label Text="Next Stage Date" Grid.Column="0" Grid.Row="2"></Label>
+						<DatePicker x:Name="dtpPostingDt" Grid.Column="1" Grid.Row="2" Format="yyyy-MM-dd" HorizontalOptions="FillAndExpand" Date="{Binding NextPostingDate}"></DatePicker>
+					
+						<Label Text="Adjournment Sought By" Grid.Column="0" Grid.Row="3"></Label>
+						<Picker x:Name="pickerAdjournetSoughtBy" Grid.Column="1" Grid.Row="3" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding AdjournetSoughtByIndex}"/>
+					
+						<Label Text="Adjournment Reason" Grid.Column="0" Grid.Row="4"></Label>
+						<Picker x:Name="pickerAdjournetReason" Grid.Column="1" Grid.Row="4" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding AdjournetReasonIndex}" />
+					
+						<Label Text="Remarks Date" Grid.Column="0" Grid.Row="5"></Label>
+						<DatePicker x:Name="dtpStgRemDt" Grid.Column="1" Grid.Row="5" Format="yyyy-MM-dd" HorizontalOptions="FillAndExpand" Date="{Binding RemarkDate}"></DatePicker>
+					
+						<Label Text="Remarks" Grid.Column="0" Grid.Row="6"></Label>
+						<Entry x:Name="txtRemarks" Grid.Column="1" Grid.Row="6" TextColor="#fff" Text="{Binding Remark}" HorizontalOptions="FillAndExpand"></Entry>
+					
+						<Label Text="Appeal" Grid.Column="0" Grid.Row="7"></Label>
+						<Picker x:Name="pickerAppeal" Grid.Column="1" Grid.Row="7" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding AppealIndex}"/>
+					
+						<Label Text="Add Interim orders" Grid.Column="0" Grid.Row="8"></Label>
+						<Picker x:Name="pickerInterimOrders" Grid.Column="1" Grid.Row="8" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding InterimOrdersIndex}"/>
+					
+						
+					</Grid>
+			</StackLayout>
+
+			<StackLayout  Orientation="Vertical" IsVisible="{Binding AttachmentVisible}">
+				<Label Text="Attachments"></Label>
+				 <ListView x:Name="listNames"  ItemsSource="{Binding AttachImage}" >
+		  				<ListView.ItemTemplate>
+		  					<DataTemplate>
+
+		  					<ViewCell> 
+				  						<Grid Padding="5"> 
+				  							<Grid.RowDefinitions> 
+				  								<RowDefinition Height="50"></RowDefinition> 
+		  										
+				  							</Grid.RowDefinitions> 
+
+				  							<Grid.ColumnDefinitions> 
+				  								
+
+				  								<ColumnDefinition Width="*">	</ColumnDefinition> 
+		  										<ColumnDefinition Width="40" >	</ColumnDefinition> 
+
+				  							</Grid.ColumnDefinitions> 
+
+<!--				  							<Image Grid.Row="0" Grid.Column="0"  x:Name="ImgForward" 
+				  								Source="{Binding _ImageSource}" WidthRequest="70"
+				  								VerticalOptions="StartAndExpand" 
+				  								HorizontalOptions="StartAndExpand"/> -->
+
+
+											<Label Grid.Row="0" Grid.Column="0" VerticalOptions="StartAndExpand"
+				  								HorizontalOptions="StartAndExpand" TextColor="White" Text="{Binding FileName}" ></Label>
+
+
+
+<!--				  							<Button Image="Close.png" Grid.Row="0" VerticalOptions="StartAndExpand" 
+				  								HorizontalOptions="StartAndExpand" Grid.Column="2" Command="{Binding local:CaseDetailsVM.DeleteAttachment}"></Button>-->
+<!--											<Image Source="cancel.png" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" >
+												<Image.GestureRecognizers>
+													<TapGestureRecognizer Command="{Binding DeleteAttachment}"></TapGestureRecognizer>
+												</Image.GestureRecognizers>
+											</Image>-->
+				  							</Grid>
+				  				</ViewCell>
+
+<!--				  				<ImageCell 
+													Text="{Binding FileName}" 
+													ImageSource="{Binding _ImageSource}"
+												>
+												</ImageCell>-->
+		  					</DataTemplate>
+		  				</ListView.ItemTemplate>
+		  		</ListView>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+					<Label Text="{Binding Result}" TextColor="White" FontFamily="Impact, Charcoal, sans-serif"></Label>
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+				<Button x:Name="btnAttach" TextColor="White" Text="Attach"  HorizontalOptions="FillAndExpand" Command="{Binding AttachmentCommand}"></Button>
+
+				<Button x:Name="btnSave" TextColor="White" Text="Save"   HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
+			</StackLayout>
+
+			</StackLayout>
+		</ScrollView>
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

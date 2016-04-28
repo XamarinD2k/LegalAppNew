@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:local="clr-namespace:LegalApp;assembly=LegalApp" x:Class="LegalApp.ZoneReportPage" Title="Zonewise Summary Report" 
+xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+	<ContentPage.BindingContext>
+		<local:ZoneReportVM />
+	</ContentPage.BindingContext>
+	<!--	<ContentPage.Resources>
+  		<ResourceDictionary>
+   			<OnPlatform x:Key="Priority1" x:TypeArguments="x:Int32"
+     			iOS="0"
+     			Android="1"
+     			WinPhone="1" />
+   			<OnPlatform x:Key="Priority2" x:TypeArguments="x:Int32"
+   		  		 iOS="1"
+   		  		 Android="0"
+   		  	 WinPhone="0" />
+  		</ResourceDictionary>
+ 	</ContentPage.Resources>-->
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="ToolMenuGraph" Order="Primary" Icon="LineGraph.png">
+			<!-- 	  		<ToolbarItem.Icon>
+ 	   			<OnPlatform x:TypeArguments="FileImageSource"
+ 	   				 WinPhone="Toolkit.Content/ApplicationBar.Check.png" />
+ 			 </ToolbarItem.Icon>-->
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+			<StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+				<ActivityIndicator Color="Silver" IsVisible="{Binding ActivityIndicator}" IsRunning="{Binding ActivityIndicator}" VerticalOptions="Center" HorizontalOptions="Center">
+				</ActivityIndicator>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#0080ff" IsVisible="{Binding ShowReport}">
+				<Grid Padding="5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30">
+						</RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*">
+						</ColumnDefinition>
+						<ColumnDefinition Width="50">
+						</ColumnDefinition>
+						<ColumnDefinition Width="100">
+						</ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" TextColor="White" FontAttributes="Bold" Text="Zone Name" />
+					<Label Grid.Row="0" Grid.Column="1" TextColor="White" FontAttributes="Bold" Text="No. of Accounts" />
+					<Label Grid.Row="0" Grid.Column="2" TextColor="White" FontAttributes="Bold" Text="Amount (in Lakhs)" />
+				</Grid>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowReport}">
+				<ListView x:Name="listZoneReport" ItemsSource="{Binding ZoneReportResponseList}" RowHeight="40">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid Padding="5">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30">
+										</RowDefinition>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*">
+										</ColumnDefinition>
+										<ColumnDefinition Width="50">
+										</ColumnDefinition>
+										<ColumnDefinition Width="100">
+										</ColumnDefinition>
+									</Grid.ColumnDefinitions>
+									<Label Grid.Row="0" Grid.Column="0" Text="{Binding ZoneAlt_Key}" IsVisible="false" />
+									<Label Grid.Row="0" Grid.Column="0" Text="{Binding ZoneName}" />
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding NoofAccounts}" />
+									<Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" />
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#ff8000" IsVisible="{Binding ShowReport}">
+				<ListView x:Name="listZoneReportTotal" ItemsSource="{Binding ZoneReportTotalList}" RowHeight="40">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid Padding="5">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30">
+										</RowDefinition>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*">
+										</ColumnDefinition>
+										<ColumnDefinition Width="50">
+										</ColumnDefinition>
+										<ColumnDefinition Width="100">
+										</ColumnDefinition>
+									</Grid.ColumnDefinitions>
+									<Label Grid.Row="0" Grid.Column="0" Text="Total" />
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding NoofAccounts}" />
+									<Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" />
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+			<!--			<chart:SfChart x:Name="sfChart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowGraph}">
+				<chart:SfChart.Title>
+					<chart:ChartTitle Text="Zone Report" />
+				</chart:SfChart.Title>
+				<chart:SfChart.Legend>
+					<chart:ChartLegend />
+				</chart:SfChart.Legend>
+				<chart:SfChart.ChartBehaviors>
+					<chart:ChartZoomPanBehavior EnablePanning="true" EnableDoubleTap="true" />
+				</chart:SfChart.ChartBehaviors>
+				<chart:SfChart.PrimaryAxis>
+					<chart:CategoryAxis ShowMajorGridLines="True" LabelsIntersectAction="MultipleRows">
+						<chart:CategoryAxis.Title>
+							<chart:ChartAxisTitle Text="Zone Name" />
+						</chart:CategoryAxis.Title>
+					</chart:CategoryAxis>
+				</chart:SfChart.PrimaryAxis>
+				<chart:SfChart.SecondaryAxis>
+					<chart:NumericalAxis>
+						<chart:NumericalAxis.Title>
+							<chart:ChartAxisTitle Text="Data" />
+						</chart:NumericalAxis.Title>
+						<chart:NumericalAxis.LabelStyle>
+							<chart:ChartAxisLabelStyle />
+						</chart:NumericalAxis.LabelStyle>
+					</chart:NumericalAxis>
+				</chart:SfChart.SecondaryAxis>
+				<chart:SfChart.Series>
+					<chart:ColumnSeries Label="Amount" ItemsSource="{Binding Amount}" Color="Green">
+						<chart:ColumnSeries.DataMarker>
+							<chart:ChartDataMarker ShowLabel="True">
+								<chart:ChartDataMarker.LabelStyle>
+									<chart:DataMarkerLabelStyle LabelPosition="Inner" />
+								</chart:ChartDataMarker.LabelStyle>
+							</chart:ChartDataMarker>
+						</chart:ColumnSeries.DataMarker>
+					</chart:ColumnSeries>
+
+					<chart:LineSeries Label="No. of Account" ItemsSource="{Binding NoOfAccount}" Color="Yellow">
+						<chart:LineSeries.DataMarker>
+							<chart:ChartDataMarker ShowLabel="True">
+								<chart:ChartDataMarker.LabelStyle>
+									<chart:DataMarkerLabelStyle LabelPosition="Inner" />
+								</chart:ChartDataMarker.LabelStyle>
+							</chart:ChartDataMarker>
+						</chart:LineSeries.DataMarker>
+					</chart:LineSeries>
+				</chart:SfChart.Series>
+			</chart:SfChart>-->
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
